@@ -19,3 +19,6 @@ jobs:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ arch }}-{{ checksum "pom.xml" }}
+
+      - store_artifacts:
+          path: target/*.jar
