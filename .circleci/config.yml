@@ -23,9 +23,9 @@ jobs:
       - store_artifacts:
           path: target/*.jar
 
-  workflows:
-    version: 2
+workflows:
+  version: 2
 
-    run:
-      jobs:
-        - prepare-dependencies
+  run:
+    jobs:
+      - prepare-dependencies
