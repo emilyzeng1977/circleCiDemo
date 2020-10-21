@@ -21,16 +21,16 @@ jobs:
           key: v1-dependencies-{{ arch }}-{{ checksum "pom.xml" }}
 
       - persist_to_workspace:
-          root: .
+          root: ~
           paths:
-            - .
+            - .m2
 
   build:
     docker:
       - image: maven:3.6-jdk-8-openj9
     steps:
       - attach_workspace:
-          at: .
+          at: ~/.m2
       - run:
           name: mvn package
           command: mvn -U clean package verify
