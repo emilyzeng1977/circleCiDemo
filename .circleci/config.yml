@@ -42,3 +42,6 @@ workflows:
   run:
     jobs:
       - prepare-dependencies
+      - build:
+          requires:
+            - prepare-dependencies
