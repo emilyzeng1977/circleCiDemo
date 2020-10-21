@@ -20,8 +20,21 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ arch }}-{{ checksum "pom.xml" }}
 
-      - store_artifacts:
-          path: target/*.jar
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  build:
+    docker:
+      - image: maven:3.6-jdk-8-openj9
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: mvn package
+          command: mvn -U clean package verify
+
 
 workflows:
   version: 2
